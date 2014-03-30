@@ -1,0 +1,18 @@
+Trabajo previo realizado:
+	- Trabajo de investigacion sobre el uso de RMI (Remote Method Invocation) para el desarrollo de la apli-
+	  cación, sin embargo Android en estos momentos no soporta RMI de Java directamente.
+	- Realizada una aproximación con un ejemplo funcional de como deve ser el protocolo de comunicacion en la
+	  aplicacion. Desarrollados los metodos de busqueda de servidor por sockets y la posterior conexion.
+	- Investigacion sobre las clases UPnP de Java, compatible con Android. 
+		Nota: esta pendiente el terminar de realizar una pequeña aplicacion de prueba
+	- Desarrollada una pequeña aplicación en android para enviar señales al servidor.
+
+
+29/03/2014 
+	2 horas:
+	- Buscando información sobre posibles alternativas a JMF (Java Media Framework) por el mal funcionamiento
+	  con el JDK1.7. Alternativa mas viable encontrada FJM (Freedom for media in Java).
+	1 hora :
+	- Probando si el fallo de JMF es devido al formato de codificacion de video. Probados varios formatos que 
+	  estan soportados segun la documentacion de oracle sobre JMF pero sin exito.
+		Nota: Probar a desarrollar el reproductor en la version 1.6
