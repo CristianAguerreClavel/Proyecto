@@ -1,4 +1,4 @@
-Cristian Aguerre Clavel
+﻿Cristian Aguerre Clavel
 
 NOTA: Los proyectos que comienzan por "P" son Pruebas.
 
@@ -20,3 +20,8 @@ Trabajo previo realizado:
 	- Probando si el fallo de JMF es debido al formato de codificacion de video. Probados varios formatos que 
 	  estan soportados segun la documentacion de oracle sobre JMF pero sin exito.
 		Nota: Probar a desarrollar el reproductor en la version 1.6
+
+01/04/2014
+	2 horas:
+	- Buscando alternativas a JMF y FMJ, con Luis. Encontrado JSFML, compatible con la JDK1.7 y descargado el 
+	  repositorio y documentación.
