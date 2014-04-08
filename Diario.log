@@ -31,3 +31,13 @@ Trabajo previo realizado:
 	- Desarrollado proyecto PReproductorJavaFx, Conseguido que reproduzca video en formato mp4. En estos momen
 	  tos realizando pruebas para encapsular en un Thread para poder tener control sobre la ejecución. Falta
 	  probar si causa algun problema el uso de sockets con JavaFx (No deberia causar problemas).
+
+08/04/2014
+	1 hora:
+	- Seguimiento en clase con Luis del proyecto, resuelta duda de implementacion con Singleton. Se ha visto en
+	  clase que no es necesario por ahora encapsular en un hilo la ejecución del mediaPlayer ya que el mismo lo 
+	  lanza de manera asincrona.
+	2 horas:
+	- Realizadas pruebas de como abrir mas ventanas a parte de la ventana principal del reproductor. Para ello
+	  se ha utilizado swing. Ademas se ha añadido un JFileChooser de swing para buscar un archivo y obtener la
+	  ruta y nombre del fichero seleccionado. Esto se utilizara para abrir los ficheros a reproducir.

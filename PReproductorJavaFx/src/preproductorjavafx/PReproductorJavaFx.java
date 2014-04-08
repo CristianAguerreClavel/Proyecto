@@ -53,20 +53,22 @@ public class PReproductorJavaFx extends Application{
         root.getChildren().add(mediaView);
        
         final Button play =     new Button("Play");
-        final Button pause =     new Button("Pause");
+        final Button pause =    new Button("Pause");
         final Button resume =   new Button("Continue");
-      
-        play.setLayoutX(350);
-        play.setLayoutY(220);  
+        
         root.getChildren().add(play);
         root.getChildren().add(pause);
         root.getChildren().add(resume);
         pause.setVisible(false);
         resume.setVisible(false);
         
-        final Scene scene = new Scene(root, 960, 540);
-        scene.setFill(Color.BLACK);
-
+        final Scene scene = new Scene(root, 960, 540); //Tamaño ventana principal
+        scene.setFill(Color.BLACK);//Color del fondo de la pantalla
+        
+        play.setLayoutX(350);
+        play.setLayoutY(220);  
+        
+        
         primaryStage.setScene(scene);
         primaryStage.setTitle("Reproductor Multimedia");
         primaryStage.setFullScreen(true);
@@ -86,6 +88,14 @@ public class PReproductorJavaFx extends Application{
                 play.setVisible(false);
                 //thread.start();
                 mediaPlayer.play();
+                Thread t1 = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        WindowsOpenResurce window = new WindowsOpenResurce();
+                        window.setVisible(true);
+                    }
+                });
+                t1.start();
             }
         });
         
