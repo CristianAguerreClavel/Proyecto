@@ -25,3 +25,9 @@ Trabajo previo realizado:
 	2 horas:
 	- Buscando alternativas a JMF y FMJ, con Luis. Encontrado JSFML, compatible con la JDK1.7 y descargado el 
 	  repositorio y documentación.
+
+06/04/2014
+	3 horas:
+	- Desarrollado proyecto PReproductorJavaFx, Conseguido que reproduzca video en formato mp4. En estos momen
+	  tos realizando pruebas para encapsular en un Thread para poder tener control sobre la ejecución. Falta
+	  probar si causa algun problema el uso de sockets con JavaFx (No deberia causar problemas).
