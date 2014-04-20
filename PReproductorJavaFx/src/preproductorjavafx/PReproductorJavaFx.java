@@ -16,6 +16,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
+import static preproductorjavafx.PDualServer.States;
 
 
 /**
@@ -23,13 +24,13 @@ import javax.swing.JFileChooser;
  * @author Cristian Aguerre Clavel
  */
 public class PReproductorJavaFx extends Application{
-    private MediaPlayer mediaPlayer;
+    private  static MediaPlayer mediaPlayer;
     private MediaView mediaView;
-    final Button play = new Button("Play");
-    final Button pause = new Button("Pause");
-    final Button resume = new Button("Continue");
-    final Button buscar = new Button("Examinar");
-    static File file = null;
+    private final Button play = new Button("Play");
+    private final Button pause = new Button("Pause");
+    private final Button resume = new Button("Continue");
+    private final Button buscar = new Button("Examinar");
+    private static File file = null;
     
     public static void main(String[] args) {
         launch(args);
@@ -38,6 +39,15 @@ public class PReproductorJavaFx extends Application{
     @Override
     public void start(Stage primaryStage) {
         buildMediaPlayer(primaryStage);
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+            PDualServer.States("udpWaiting");
+            }
+        });
+        thread.start();
+       
     }
     
     private void buildMediaPlayer(Stage primaryStage){
@@ -135,6 +145,14 @@ public class PReproductorJavaFx extends Application{
     
     public static void selectedFile(JFileChooser jfileChoser){
         file = jfileChoser.getSelectedFile();
+    }
+    
+    public static void mediaPlayerPlay(){
+        mediaPlayer.play();
+    }
+    
+    public static void mediaPlayerStop(){
+        mediaPlayer.stop();
     }
     
 }   

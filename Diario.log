@@ -54,3 +54,9 @@ Trabajo previo realizado:
 	  ma se produce al abrir el jFilechooser, despues de eso no permite instanciar de manera correcta a la escena
 	  el nuevo mediaView. Por ahora se dejara asi para poder continuar avanzando, en el proximo seguimiento con 
 	  Luis intentar solucionarlo
+
+20/04/2014
+	3 horas:
+	- Implementado modulo para escuchar peticiones desde el cliente en PReproductorJavaFx, y ajustado uno de los
+	  clientes de prueba para realizar el testeo.
+
