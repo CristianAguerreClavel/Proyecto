@@ -6,6 +6,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -14,6 +15,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 
 
 /**
@@ -21,6 +23,13 @@ import javafx.stage.Stage;
  * @author Cristian Aguerre Clavel
  */
 public class PReproductorJavaFx extends Application{
+    private MediaPlayer mediaPlayer;
+    private MediaView mediaView;
+    final Button play = new Button("Play");
+    final Button pause = new Button("Pause");
+    final Button resume = new Button("Continue");
+    final Button buscar = new Button("Examinar");
+    static File file = null;
     
     public static void main(String[] args) {
         launch(args);
@@ -32,16 +41,14 @@ public class PReproductorJavaFx extends Application{
     }
     
     private void buildMediaPlayer(Stage primaryStage){
-        //String workingDir = System.getProperty("user.dir");
-        //Ruta del fichero a abrir
-        //TODO Cambiar por una ruta dinamica
-        final File f =                  new File("titanfall.mp4");
-        final Media media =             new Media(f.toURI().toString());
-        final MediaPlayer mediaPlayer = new MediaPlayer(media);
-        final MediaView mediaView =     new MediaView(mediaPlayer);
-        final DoubleProperty width =    mediaView.fitWidthProperty();
-        final DoubleProperty height =   mediaView.fitHeightProperty();
-
+       
+        final File f = new File("titanfall.mp4");
+        final Media media = new Media(f.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaView = new MediaView(mediaPlayer);
+        final DoubleProperty width = mediaView.fitWidthProperty();
+        final DoubleProperty height = mediaView.fitHeightProperty();
+        
         width.bind(Bindings.selectDouble(mediaView.sceneProperty(),  "width"));
         height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
         mediaView.setPreserveRatio(true);
@@ -50,52 +57,57 @@ public class PReproductorJavaFx extends Application{
         //***********ESCENA*************//
         /********************************/
         StackPane root = new StackPane();
+        root.setAlignment(Pos.BOTTOM_CENTER);
         root.getChildren().add(mediaView);
-       
-        final Button play =     new Button("Play");
-        final Button pause =    new Button("Pause");
-        final Button resume =   new Button("Continue");
         
         root.getChildren().add(play);
         root.getChildren().add(pause);
         root.getChildren().add(resume);
+        root.setAlignment(buscar,Pos.TOP_LEFT);
+        root.getChildren().add(buscar);
+        play.setMinSize(90, 60);
         pause.setVisible(false);
         resume.setVisible(false);
         
-        final Scene scene = new Scene(root, 960, 540); //Tamaño ventana principal
-        scene.setFill(Color.BLACK);//Color del fondo de la pantalla
-        
-        play.setLayoutX(350);
-        play.setLayoutY(220);  
-        
-        
+        final Scene scene = new Scene(root, 960, 540);
+        scene.setFill(Color.BLACK);
+
         primaryStage.setScene(scene);
+        scene.getStylesheets().add(PReproductorJavaFx.class.getResource("CSS.css").toExternalForm());
         primaryStage.setTitle("Reproductor Multimedia");
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
-        //Instancia del objeto RVideo
-        RVideo video =          new RVideo(mediaPlayer);
-        final Thread thread =   new Thread(video);
-        
         /********************************/
         //***********OYENTES************//
         /********************************/
+        
+         buscar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                filechoseer f = new filechoseer();
+                f.setVisible(true);
+                mediaPlayer.stop();
+                pause.setVisible(false);
+                resume.setVisible(false);
+                play.setVisible(true);
+                
+            }
+        });
+        
         play.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                pause.setVisible(true);
-                play.setVisible(false);
-                //thread.start();
-                mediaPlayer.play();
-                Thread t1 = new Thread(new Runnable(){
-                    @Override
-                    public void run() {
-                        WindowsOpenResurce window = new WindowsOpenResurce();
-                        window.setVisible(true);
-                    }
-                });
-                t1.start();
+               if(file != null){
+                    Media media = new Media(file.toURI().toString());
+                    mediaPlayer = new MediaPlayer(media);
+                    mediaView.setMediaPlayer(mediaPlayer);
+
+                    pause.setVisible(true);
+                    play.setVisible(false);
+                    //thread.start();
+                    mediaPlayer.play();
+               }
             }
         });
         
@@ -111,6 +123,7 @@ public class PReproductorJavaFx extends Application{
         
         resume.setOnAction(new EventHandler<ActionEvent>() {
             @Override
+            
             public void handle(ActionEvent t) {
                 resume.setVisible(false);
                 pause.setVisible(true);
@@ -119,28 +132,10 @@ public class PReproductorJavaFx extends Application{
             }
         });
     }
+    
+    public static void selectedFile(JFileChooser jfileChoser){
+        file = jfileChoser.getSelectedFile();
+    }
+    
 }   
-
-
-class RVideo implements Runnable{
-    //TODO ¿Crearlo como un Singleton?
-    private static MediaPlayer mediaPlayer;
-    
-    public RVideo (MediaPlayer mediaPlayer){
-        this.mediaPlayer = mediaPlayer;
-    }
-    
-    @Override
-    public void run() {
-         mediaPlayer.play();
-    }
-    
-    public static void pause() {
-        mediaPlayer.pause();
-    }
-    
-    public static void resume(){
-        mediaPlayer.play();
-    }
-}
 

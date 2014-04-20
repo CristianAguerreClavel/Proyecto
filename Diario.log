@@ -41,3 +41,16 @@ Trabajo previo realizado:
 	- Realizadas pruebas de como abrir mas ventanas a parte de la ventana principal del reproductor. Para ello
 	  se ha utilizado swing. Ademas se ha añadido un JFileChooser de swing para buscar un archivo y obtener la
 	  ruta y nombre del fichero seleccionado. Esto se utilizara para abrir los ficheros a reproducir.
+
+18/04/2014
+	2 horas:
+	- Añadido boton de abrir recurso y modificado funcionamiento para que se reproduzca en orden correcto
+
+20/04/2014
+	4 horas:
+	- Intentando solucionar problema de ejecución al intentar refactorizar el codigo para mayor sentido, sin  
+	  exito, no soy capaz de crear una instancia del conjunto de componentes del MediaPlayer para no tener que
+	  cargar un video previo (el cual sino se encuentra solucion devera estar incluido en el paquete).  El proble
+	  ma se produce al abrir el jFilechooser, despues de eso no permite instanciar de manera correcta a la escena
+	  el nuevo mediaView. Por ahora se dejara asi para poder continuar avanzando, en el proximo seguimiento con 
+	  Luis intentar solucionarlo
