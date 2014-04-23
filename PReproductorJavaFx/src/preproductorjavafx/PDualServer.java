@@ -3,7 +3,6 @@ package preproductorjavafx;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -28,6 +27,14 @@ public class PDualServer {
     private static int portClient;
     private static DatagramSocket socketUdp;
     
+    /*
+        States(String state) ->                     Metodo que se usa para pasar entre distintos metodos
+                                                    y constrolar asi que "modulo" se quiere activo.
+        @params String state -> udpWaitin ->        activa el modulo de escucha con el protocolo udp
+                             -> waitTcpConetion ->  activa el modulo de escucha en Tcp esperando poder
+                                                    establecer comunicacion con el host recibido en Udp
+                             -> tcpConection ->     activa el modulo de escucha Tcp constante.
+    */
     public static void States(String state){
         Socket socket1 = null;
         switch (state){
@@ -45,7 +52,6 @@ public class PDualServer {
         }
     }
    
-    
     private static void waitingClient(){
         waitingClient=true;
         try {
@@ -108,7 +114,6 @@ public class PDualServer {
         } catch (IOException ex) {
             System.out.println("Error PDualServer.waitingTcpConection IOException");
         }
-        //System.out.println("Hola");
         conectionTcp(socket);
         return socket;
     }
@@ -124,15 +129,19 @@ public class PDualServer {
                     int signal = reader.read();
                     System.out.println(signal);
                     //Aqui se interpretan las ordenes
-                    if(signal == 1){
-                        PReproductorJavaFx.mediaPlayerPlay();
-                    }
-                    else if(signal == 0 ){
+                    if(signal == 0){
                         PReproductorJavaFx.mediaPlayerStop();
                     }
-                    else if(signal == 2){
-                        //TODO Pause
+                    else if(signal == 1 ){
+                        PReproductorJavaFx.mediaPlayerPlay();
                     }
+                    else if(signal == 2){
+                        PReproductorJavaFx.mediaPlayerPause();
+                    }
+                    else if (signal == 3){
+                        PReproductorJavaFx.mediaPlayerResume();
+                    }
+                    
                 }
             } catch (Exception ex) {
                 System.out.println("No Signal");
@@ -147,10 +156,4 @@ public class PDualServer {
             }
         }
     }
-    
-//    public static void main(String[] args) {
-//        States("udpWaiting");
-//        
-//    }
-    
 }

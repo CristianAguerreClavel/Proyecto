@@ -67,3 +67,6 @@ Trabajo previo realizado:
 	  sica de la aplicacion. Para ello se tiene que lanzar el PReproudctorJavaFx, pulsar en el boton superior
 	  examinar, seleccionar un archivo (un fichero mp4) y NO pulsar play. A continuacion lanzar el proyecto PClientePruebas,
 	  en la consola del IDE escribir un 1 y pulsar intro para play, un 0 para stop.
+
+	1 hora:
+	- Limpieza de codigo, añadidos comentarios, implementados los metodos mediaPlayerPause() y mediaPlayerResume()

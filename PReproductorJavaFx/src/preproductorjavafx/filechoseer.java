@@ -14,7 +14,6 @@ public class filechoseer extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,8 +53,6 @@ public class filechoseer extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
-   
-    
     /**
      * @param args the command line arguments
      */

@@ -1,8 +1,6 @@
 package preproductorjavafx;
 
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -18,8 +16,6 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
-import static preproductorjavafx.PDualServer.States;
-
 
 /**
  *
@@ -41,19 +37,20 @@ public class PReproductorJavaFx extends Application{
     @Override
     public void start(Stage primaryStage) {
         buildMediaPlayer(primaryStage);
+        //Inicia un Hilo con el Receptor de señales de la red, PDualServer
+        //TODO Cambiar nombre de PDualServer
         Thread thread = new Thread(new Runnable() {
-
             @Override
             public void run() {
-            PDualServer.States("udpWaiting");
+                PDualServer.States("udpWaiting");
             }
         });
         thread.start();
-       
     }
     
     private void buildMediaPlayer(Stage primaryStage){
        
+        //TODO Arreglar la instancia obligatoria del objeto File para el Media -> Preguntar a Luis.
         final File f = new File("titanfall.mp4");
         final Media media = new Media(f.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
@@ -93,8 +90,7 @@ public class PReproductorJavaFx extends Application{
         /********************************/
         //***********OYENTES************//
         /********************************/
-        
-         buscar.setOnAction(new EventHandler<ActionEvent>() {
+        buscar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
                 filechoseer f = new filechoseer();
@@ -114,10 +110,8 @@ public class PReproductorJavaFx extends Application{
                     Media media = new Media(file.toURI().toString());
                     mediaPlayer = new MediaPlayer(media);
                     mediaView.setMediaPlayer(mediaPlayer);
-
                     pause.setVisible(true);
                     play.setVisible(false);
-                    //thread.start();
                     mediaPlayer.play();
                }
             }
@@ -128,18 +122,15 @@ public class PReproductorJavaFx extends Application{
             public void handle(ActionEvent t) {
                 pause.setVisible(false);
                 resume.setVisible(true);
-                //RVideo.pause();
                 mediaPlayer.pause();
             }
         });
         
         resume.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            
             public void handle(ActionEvent t) {
                 resume.setVisible(false);
                 pause.setVisible(true);
-                //RVideo.resume();
                 mediaPlayer.play();
             }
         });
@@ -149,15 +140,47 @@ public class PReproductorJavaFx extends Application{
         file = jfileChoser.getSelectedFile();
     }
     
+    /*
+        mediaPlayerPlayer() ->  Se utiliza para la primera ejecucion del reproductor
+                                Primero carga el media con el fichero a reproducir y
+                                despues lanza el play.
+                                Señal que recibe PDualServer -> int 1
+    */
     public static void mediaPlayerPlay(){
         setMedia();
         mediaPlayer.play();
     }
     
+    /*
+        mediaPlayerStop() ->    Detiene completamente la ejecucion del video
+                                Señal que recibe PDualServer -> int 0
+    */
     public static void mediaPlayerStop(){
         mediaPlayer.stop();
     }
     
+    /*
+        mediaPlayerPause() ->   Pausa el video
+                                Señal que recibe PDualServer -> int 2
+    */
+    public static void mediaPlayerPause(){
+        mediaPlayer.pause();
+    }
+    
+    /*
+        mediaPlayerResume() ->  Continua la reproduccion pausada
+                                Señal que recibe PDualServer -> int 3
+    */
+    public static void mediaPlayerResume(){
+        mediaPlayer.play();
+    }
+    
+    /*
+        setMedia() ->   Carga el Media, mediplayer y mediaView, necestia
+                        que antes se haya cargado el recurso (File) con
+                        el video a reproducir. Es decir antes se debe haber
+                        llamado a JFileChooser.
+    */
     public static void setMedia(){
         if(file != null){
             Media media = new Media(file.toURI().toString());
