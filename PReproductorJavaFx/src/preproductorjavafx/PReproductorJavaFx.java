@@ -1,6 +1,8 @@
 package preproductorjavafx;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -25,9 +27,9 @@ import static preproductorjavafx.PDualServer.States;
  */
 public class PReproductorJavaFx extends Application{
     private  static MediaPlayer mediaPlayer;
-    private MediaView mediaView;
-    private final Button play = new Button("Play");
-    private final Button pause = new Button("Pause");
+    private static MediaView mediaView;
+    private static final Button play = new Button("Play");
+    private static final Button pause = new Button("Pause");
     private final Button resume = new Button("Continue");
     private final Button buscar = new Button("Examinar");
     private static File file = null;
@@ -148,6 +150,7 @@ public class PReproductorJavaFx extends Application{
     }
     
     public static void mediaPlayerPlay(){
+        setMedia();
         mediaPlayer.play();
     }
     
@@ -155,5 +158,15 @@ public class PReproductorJavaFx extends Application{
         mediaPlayer.stop();
     }
     
+    public static void setMedia(){
+        if(file != null){
+            Media media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaView.setMediaPlayer(mediaPlayer);
+
+            pause.setVisible(true);
+            play.setVisible(false);
+        }
+    }
 }   
 

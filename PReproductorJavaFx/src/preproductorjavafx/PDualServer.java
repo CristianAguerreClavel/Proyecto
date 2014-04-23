@@ -2,9 +2,7 @@ package preproductorjavafx;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.Reader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -75,7 +73,6 @@ public class PDualServer {
                 socketUdp.close();
                 waitingClient = false;
             }
-            
         } catch (SocketException ex) {
             System.out.println("Error PDualServer.waitingClient.SocketException");
         } catch (IOException ex) {
@@ -89,7 +86,6 @@ public class PDualServer {
         ServerSocket serverSocket = null;
         try {
             boolean accept = false;
-            
             System.out.println("Escuchando puerto puerto 2222 TCP:");
             System.out.println("Esperando cliente acordado en UDP para TCP...");
             boolean condicion = true;
@@ -125,13 +121,21 @@ public class PDualServer {
             reader = new BufferedReader (new InputStreamReader (socket.getInputStream()));
             try {
                 while(true){
-                    System.out.println(reader.read());
-                    if(reader.read() == 4){
+                    int signal = reader.read();
+                    System.out.println(signal);
+                    //Aqui se interpretan las ordenes
+                    if(signal == 1){
                         PReproductorJavaFx.mediaPlayerPlay();
                     }
+                    else if(signal == 0 ){
+                        PReproductorJavaFx.mediaPlayerStop();
+                    }
+                    else if(signal == 2){
+                        //TODO Pause
+                    }
                 }
-            } catch (IOException ex) {
-                System.out.println("No mesnage");
+            } catch (Exception ex) {
+                System.out.println("No Signal");
             }
         } catch (IOException ex) {
             Logger.getLogger(PDualServer.class.getName()).log(Level.SEVERE, null, ex);

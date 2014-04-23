@@ -23,6 +23,7 @@ public class filechoseer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Users\\Develop\\Videos"));
         jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFileChooser1ActionPerformed(evt);

@@ -60,3 +60,10 @@ Trabajo previo realizado:
 	- Implementado modulo para escuchar peticiones desde el cliente en PReproductorJavaFx, y ajustado uno de los
 	  clientes de prueba para realizar el testeo.
 
+
+23/04/2014
+	1 hora:
+	- Corregido los fallos del codigo que producian un mal funcionamiento. Ya se puede probar la funcionalidad ba-
+	  sica de la aplicacion. Para ello se tiene que lanzar el PReproudctorJavaFx, pulsar en el boton superior
+	  examinar, seleccionar un archivo (un fichero mp4) y NO pulsar play. A continuacion lanzar el proyecto PClientePruebas,
+	  en la consola del IDE escribir un 1 y pulsar intro para play, un 0 para stop.
