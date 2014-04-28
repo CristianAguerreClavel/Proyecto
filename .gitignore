@@ -10,3 +10,10 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/PJSMFL/nbproject/private/
+/PReproductorJavaFx/nbproject/private/
+/PReproductorJavaFx/dist/
+/PReproductorJavaFx/build/
+/ReproductorFx/nbproject/private/
+/ReproductorFx/build/
+/ReproductorFx/dist/

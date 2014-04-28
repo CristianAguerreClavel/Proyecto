@@ -47,7 +47,7 @@ public class PReproductorJavaFx extends Application{
         });
         thread.start();
     }
-    
+    //TODO Poner un flag para evitar una doble instancia en el play
     private void buildMediaPlayer(Stage primaryStage){
        
         //TODO Arreglar la instancia obligatoria del objeto File para el Media -> Preguntar a Luis.
@@ -102,7 +102,6 @@ public class PReproductorJavaFx extends Application{
                 
             }
         });
-        
         play.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
@@ -116,7 +115,6 @@ public class PReproductorJavaFx extends Application{
                }
             }
         });
-        
         pause.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
@@ -125,7 +123,6 @@ public class PReproductorJavaFx extends Application{
                 mediaPlayer.pause();
             }
         });
-        
         resume.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
@@ -191,5 +188,46 @@ public class PReproductorJavaFx extends Application{
             play.setVisible(false);
         }
     }
+    /*
+    signal 4
+    */
+    public static void setVolumenMas(){
+        mediaPlayer.setVolume(50.2);
+    }
+    /*
+    signal 5
+    */
+    public static void setVolumenMin(){
+        mediaPlayer.setVolume(50);//TODO Buscar información sobre porque no funciona
+    }
+    
+    /*
+    Signal 8
+    */
+    public static void setMuteOn(){
+        mediaPlayer.setMute(true);
+    }
+    /*
+    Signal 9
+    */
+    public static void setMuteOff(){
+        mediaPlayer.setMute(false);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }   
-

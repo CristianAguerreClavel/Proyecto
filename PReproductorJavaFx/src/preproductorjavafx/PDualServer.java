@@ -140,8 +140,9 @@ public class PDualServer {
                     }
                     else if (signal == 3){
                         PReproductorJavaFx.mediaPlayerResume();
+                    }else if (signal == 4){
+                        PReproductorJavaFx.setVolumenMas();
                     }
-                    
                 }
             } catch (Exception ex) {
                 System.out.println("No Signal");

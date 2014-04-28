@@ -70,3 +70,9 @@ Trabajo previo realizado:
 
 	1 hora:
 	- Limpieza de codigo, añadidos comentarios, implementados los metodos mediaPlayerPause() y mediaPlayerResume()
+
+24/04/2014
+	1 hora:
+	- Localizado un error en la comunicacion con el reproductor, si esta en play y se le envia nuevamente la señal 1 se repro
+	  duce desde el principio el fichero pero queda en ejecucion el anterior por debajo, posible solucion usar un flag. Añadido
+	  metodos de mute y para el control de volumen (los de volumen no funcionan).
