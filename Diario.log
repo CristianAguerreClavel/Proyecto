@@ -76,3 +76,8 @@ Trabajo previo realizado:
 	- Localizado un error en la comunicacion con el reproductor, si esta en play y se le envia nuevamente la señal 1 se repro
 	  duce desde el principio el fichero pero queda en ejecucion el anterior por debajo, posible solucion usar un flag. Añadido
 	  metodos de mute y para el control de volumen (los de volumen no funcionan).
+
+30/04/2014
+	2 horas:
+	- Desarrollado cliente para Andriod, cambiado la maquina de estados del cliente por el uso de int, porque hasta la jdk 1.6 no
+	  se permiten el uso de swich con strings. El cliente para movil se llama MandoMovil.
