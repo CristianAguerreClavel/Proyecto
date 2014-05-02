@@ -24,12 +24,12 @@ import javax.swing.JFileChooser;
 public class PReproductorJavaFx extends Application{
     private  static MediaPlayer mediaPlayer;
     private static MediaView mediaView;
-    private static final Button play = new Button("Play");
-    private static final Button pause = new Button("Pause");
+    public static final Button play = new Button("Play");
+    public static final Button pause = new Button("Pause");
     private final Button resume = new Button("Continue");
     private final Button buscar = new Button("Examinar");
     private static File file = null;
-    
+    private static Stage stage;
     public static void main(String[] args) {
         launch(args);
     }
@@ -46,10 +46,14 @@ public class PReproductorJavaFx extends Application{
             }
         });
         thread.start();
+        
+        Thread thread2 = new Thread(new ControladorInterfaces());
+        thread2.start();
+        
     }
     //TODO Poner un flag para evitar una doble instancia en el play
     private void buildMediaPlayer(Stage primaryStage){
-       
+        stage = primaryStage;
         //TODO Arreglar la instancia obligatoria del objeto File para el Media -> Preguntar a Luis.
         final File f = new File("titanfall.mp4");
         final Media media = new Media(f.toURI().toString());
@@ -214,20 +218,19 @@ public class PReproductorJavaFx extends Application{
         mediaPlayer.setMute(false);
     }
     
+    /*
+    Signal 6
+    */
+    public static void fullScreenOn(){
+        stage.setFullScreen(true);
+        stage.show();
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /*
+    signal 7
+    */
+    public static void fullScreenOff(){
+        stage.setFullScreen(false);
+    }
     
 }   

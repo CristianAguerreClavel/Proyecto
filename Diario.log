@@ -81,3 +81,10 @@ Trabajo previo realizado:
 	2 horas:
 	- Desarrollado cliente para Andriod, cambiado la maquina de estados del cliente por el uso de int, porque hasta la jdk 1.6 no
 	  se permiten el uso de swich con strings. El cliente para movil se llama MandoMovil.
+
+02/05/2014
+	2 horas:
+	- Implementado modulo ControlIterfaz, este modulo obtiene cada segundo la posicion del raton y a partir de esto resuelve si se
+	  deven ocultar los controles de la interfaz para dejar la pantalla libre, si detecta nuevamente un movimiento en el raton los 
+	  vuelve a mostrar. El modulo no esta terminado, y seria conveniente englobar los controles dentro de algun contenedor y ocultar
+	  el contenedor en lugar de los botones individualmente.

@@ -143,6 +143,12 @@ public class PDualServer {
                     }else if (signal == 4){
                         PReproductorJavaFx.setVolumenMas();
                     }
+                    else if (signal == 6){
+                        PReproductorJavaFx.fullScreenOn();
+                    }
+                    else if (signal == 7){
+                        PReproductorJavaFx.fullScreenOff();
+                    }
                 }
             } catch (Exception ex) {
                 System.out.println("No Signal");
