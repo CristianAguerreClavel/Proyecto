@@ -88,3 +88,8 @@ Trabajo previo realizado:
 	  deven ocultar los controles de la interfaz para dejar la pantalla libre, si detecta nuevamente un movimiento en el raton los 
 	  vuelve a mostrar. El modulo no esta terminado, y seria conveniente englobar los controles dentro de algun contenedor y ocultar
 	  el contenedor en lugar de los botones individualmente.
+
+04/05/2014
+	1 hora:
+	-  Intenado solucionar el problema de desincronizacion al cerrar la aplicación en el movil. Sin resultado, continuar con el metodo
+	   onDestroy().

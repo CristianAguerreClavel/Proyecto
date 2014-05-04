@@ -149,6 +149,9 @@ public class PDualServer {
                     else if (signal == 7){
                         PReproductorJavaFx.fullScreenOff();
                     }
+                    else if (signal == 11){
+                        PReproductorJavaFx.restartSearch();
+                    }
                 }
             } catch (Exception ex) {
                 System.out.println("No Signal");

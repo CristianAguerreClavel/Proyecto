@@ -30,6 +30,9 @@ public class PReproductorJavaFx extends Application{
     private final Button buscar = new Button("Examinar");
     private static File file = null;
     private static Stage stage;
+    
+    private static Thread thread;
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -39,7 +42,7 @@ public class PReproductorJavaFx extends Application{
         buildMediaPlayer(primaryStage);
         //Inicia un Hilo con el Receptor de señales de la red, PDualServer
         //TODO Cambiar nombre de PDualServer
-        Thread thread = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 PDualServer.States("udpWaiting");
@@ -231,6 +234,15 @@ public class PReproductorJavaFx extends Application{
     */
     public static void fullScreenOff(){
         stage.setFullScreen(false);
+    }
+    /* TODO Comprobar el problema que da al cerrar la aplicacion*/
+    /*
+    signal 11 Vuelve a poner en escucha upd al servidor
+    */
+    public static void restartSearch(){
+        thread.stop();
+        thread.destroy();
+        thread.start();
     }
     
 }   
