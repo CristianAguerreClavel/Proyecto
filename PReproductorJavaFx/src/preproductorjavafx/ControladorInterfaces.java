@@ -27,7 +27,7 @@ public class ControladorInterfaces implements Runnable{
     public void run() {
         while (condicion){
             Point p = MouseInfo.getPointerInfo().getLocation();
-            System.out.println("x: "+p.x+" | y: "+p.y);
+//            System.out.println("x: "+p.x+" | y: "+p.y);
             if (oldX == p.x && oldY == p.y){
                 try {
                     Thread.sleep(1000);

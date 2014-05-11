@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -30,6 +31,8 @@ public class PReproductorJavaFx extends Application{
     private final Button buscar = new Button("Examinar");
     private static File file = null;
     private static Stage stage;
+    /*Por defecto el estado del reproductor sera Undefined*/
+    private static String status = "Undefined";
     
     private static Thread thread;
     
@@ -45,7 +48,8 @@ public class PReproductorJavaFx extends Application{
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                PDualServer.States("udpWaiting");
+//                PDualServer.States("udpWaiting");
+                ModuloServer.udpModule();
             }
         });
         thread.start();
@@ -153,6 +157,7 @@ public class PReproductorJavaFx extends Application{
     public static void mediaPlayerPlay(){
         setMedia();
         mediaPlayer.play();
+        status = "playing";
     }
     
     /*
@@ -161,6 +166,7 @@ public class PReproductorJavaFx extends Application{
     */
     public static void mediaPlayerStop(){
         mediaPlayer.stop();
+        status = "stoped";
     }
     
     /*
@@ -169,6 +175,7 @@ public class PReproductorJavaFx extends Application{
     */
     public static void mediaPlayerPause(){
         mediaPlayer.pause();
+        status = "paused";
     }
     
     /*
@@ -177,6 +184,7 @@ public class PReproductorJavaFx extends Application{
     */
     public static void mediaPlayerResume(){
         mediaPlayer.play();
+        status = "playing";
     }
     
     /*
@@ -205,7 +213,13 @@ public class PReproductorJavaFx extends Application{
     signal 5
     */
     public static void setVolumenMin(){
-        mediaPlayer.setVolume(50);//TODO Buscar información sobre porque no funciona
+        Thread thread = new Thread (new Runnable() {
+
+            @Override
+            public void run() {
+                mediaPlayer.setVolume(50);//TODO Continua sin funcionar
+            }
+        });
     }
     
     /*
@@ -235,7 +249,8 @@ public class PReproductorJavaFx extends Application{
     public static void fullScreenOff(){
         stage.setFullScreen(false);
     }
-    /* TODO Comprobar el problema que da al cerrar la aplicacion*/
+    
+    /* TODO Comprobar el problema que da al cerrar la aplicacion en el cliente Android*/
     /*
     signal 11 Vuelve a poner en escucha upd al servidor
     */
@@ -245,4 +260,7 @@ public class PReproductorJavaFx extends Application{
         thread.start();
     }
     
+    public static String getStatus(){
+        return status;
+    }
 }   

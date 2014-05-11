@@ -93,3 +93,20 @@ Trabajo previo realizado:
 	1 hora:
 	-  Intenado solucionar el problema de desincronizacion al cerrar la aplicación en el movil. Sin resultado, continuar con el metodo
 	   onDestroy().
+
+07/05/2014
+	2 horas:
+	- Cambiado modulo de interprete de ordenes de TCP a UDP.
+
+10/05/2014
+	5 horas:
+	- Resulto problema grave con la codificacion de java al enviar los datagramPacket
+		Resuleto con ->  String data = new String(datagramPacket.getData(), 0,datagramPacket.getLength(), "UTF-8");
+
+11/05/2014
+	2 horas:
+	- Implementado el protocolo de comunicacion nuevo en UDP, ya se produce comunicion bidireccional entre servidor y cliente. El servidor
+	  udp es -> PReproductorJavaFx/ModuloServer y el Cliente Android para el movil es -> el proyecto MandoDistancia, falta asegurarse que la implementacion
+	  del metodo que devuelve el estado es coorecto mas los metodos de control base (pause,continue) mejorar la interfaz de usuario android, arreglar
+	  los botones en el reproductor javaFx y si se puede aumentar la funcionalidad con mas opciones como skip, volume, fullscreen.
+                
